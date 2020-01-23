@@ -1,11 +1,19 @@
 package com.todo.controller;
 
+import com.todo.service.MailService;
 import com.todo.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Map;
+
+import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 
 @Controller
@@ -13,6 +21,9 @@ public class WebController {
 
     @Autowired
     TaskService taskService;
+
+    @Autowired
+    MailService mailService;
 
     @GetMapping("/")
     public String mainWithParam(
@@ -33,5 +44,25 @@ public class WebController {
         model.addAttribute("name", name);
 
         return "theBall"; //view
+    }
+
+    @GetMapping("/contact")
+    public String contactme(
+            @RequestParam(name = "name", required = false, defaultValue = "")
+                    String name, Model model) {
+
+        model.addAttribute("name", name);
+
+        return "contactme"; //view
+    }
+
+    @PostMapping(value = "/contact", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void sendMail(
+            @RequestBody String name, String email, String message) {
+
+        LOGGER.info(String.valueOf(name + email + message));
+
+        mailService.sendEmail(name, message);
+
     }
 }

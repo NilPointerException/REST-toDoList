@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+
+    <title>Todo List</title>
+
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Todo</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/theball(name=${name})}">La balle</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Laisse un message</a>
+            </li>
+        </ul>
+    </div>
+    <div class="mx-auto order-0">
+        <a class="navbar-brand mx-auto" href="#" th:text="${name}"></a>
+        <button class="navbar-toggler" data-target=".dual-collapse2" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <form class="form-inline my-2 my-lg-0">
+                    <input aria-label="Recherche" class="form-control mr-sm-2" placeholder="Rechercher" type="search"/>
+                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Rechercher</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container p-5">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header bg-primary text-white"><i class="fa fa-envelope"></i> Contact us.
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nom *</label>
+                            <input type="text" class="form-control" id="name" aria-describedby="emailHelp"
+                                   placeholder="Saisir nom" required="true" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Adresse mail</label>
+                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                                   placeholder="Saisir l'email" required="false" />
+                            <small id="emailHelp" class="form-text text-muted"> Mais t'es pas obligé... </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" rows="6" required="true"></textarea>
+                        </div>
+                        <div class="mx-auto">
+                            <button id="btnSendMail" type="submit" class="btn btn-primary text-right">Envoyer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-4">
+            <div class="card bg-light mb-3">
+                <div class="card-header bg-success text-white text-uppercase"><i class="fa fa-home"></i> Address</div>
+                <div class="card-body">
+                    <p>Nil Auberge</p>
+                    <p><a href="mailto:contact@nilauberge.tech">contact@nilauberge.tech</a></p>
+                    <p><a href="www.perdu.com">Aller voir mon CV</a></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    $("#btnSendMail").click(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            dataType : "json",
+            contentType: "application/json; charset=utf-8",
+            url: "/contact",
+            data: {
+                name: $("#name").val(),
+                mail: $("#email").val(),
+                message: $("#message").val()
+            },
+            success: function(result) {
+                alert('ok');
+            },
+            error: function(result) {
+                alert('error');
+            }
+        });
+    });
+</script>
+
+
+</html>
