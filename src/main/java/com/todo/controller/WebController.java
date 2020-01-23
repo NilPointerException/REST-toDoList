@@ -14,7 +14,7 @@ public class WebController {
     @Autowired
     TaskService taskService;
 
-    @GetMapping("/hello")
+    @GetMapping("/")
     public String mainWithParam(
             @RequestParam(name = "name", required = false, defaultValue = "")
                     String name, Model model) {
@@ -32,6 +32,6 @@ public class WebController {
 
         model.addAttribute("name", name);
 
-        return "theball"; //view
+        return "theBall"; //view
     }
 }
