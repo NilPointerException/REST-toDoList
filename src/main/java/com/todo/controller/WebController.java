@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
-
-
 @Controller
 public class WebController {
 
@@ -60,9 +57,6 @@ public class WebController {
     public void sendMail(
             @RequestBody String name, String email, String message) {
 
-        LOGGER.info(String.valueOf(name + email + message));
-
         mailService.sendEmail(name, message);
-
     }
 }
