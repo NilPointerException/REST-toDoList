@@ -7,9 +7,10 @@ pipeline {
                echo 'Build success.'
             }
         }
+
         stage('Deploy') {
             steps {
-               sh 'Je deploie'
+               echo 'Je deploie'
             }
         }
     }
