@@ -22,7 +22,7 @@ public class WebController {
     @Autowired
     MailService mailService;
 
-    @GetMapping("/")
+    @GetMapping("/todo")
     public String mainWithParam(
             @RequestParam(name = "name", required = false, defaultValue = "")
                     String name, Model model) {
@@ -43,7 +43,7 @@ public class WebController {
         return "theBall"; //view
     }
 
-    @GetMapping("/contact")
+    @GetMapping("/")
     public String contactme(
             @RequestParam(name = "name", required = false, defaultValue = "")
                     String name, Model model) {
