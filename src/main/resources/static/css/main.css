@@ -1,5 +1,5 @@
-body {
-    background-color: #f9f9fa
+body.bg-minimalism {
+    background-image: url(../img/abstract-minimalism-2K.jpg);
 }
 
 .flex {
@@ -44,7 +44,7 @@ body {
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 1px solid #d2d2dc;
+    border: 0px solid #d2d2dc;
     border-radius: 0
 }
 
