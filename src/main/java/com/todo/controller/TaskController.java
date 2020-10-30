@@ -5,9 +5,11 @@ import com.todo.service.TaskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.util.Collection;
 
 @RestController
@@ -46,5 +48,14 @@ public class TaskController {
     public Task insertTask(@RequestBody Task task) {
         LOGGER.info(String.format("Creating task : %s", task.toString()));
         return taskService.insertTask(task);
+    }
+
+    @RequestMapping(value="/cv", method=RequestMethod.GET)
+    @ResponseBody
+    public FileSystemResource downloadFile() {
+        // read as a file
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        File file = new File(classLoader.getResource("CVNilAubergeFR2020.pdf").getFile());
+        return new FileSystemResource(file);
     }
 }
