@@ -4,13 +4,17 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
 
-    <title>De la balle</title>
+    <title>Compte à rebours</title>
 
     <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/countdown.css}"/>
+    <script th:src="@{/js/countdown.js}"></script>
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
 </head>
 
@@ -20,18 +24,18 @@
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/(name=${name})}">Laisse un message</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#">La balle</a>
+                <a class="nav-link" th:href="@{/}">Laisse un message</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/countdown}">Countdown</a>
+                <a class="nav-link" th:href="@{/theball}">La balle</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href="@{/countdown}">Countdown</a>
             </li>
         </ul>
     </div>
     <div class="mx-auto order-0">
-        <a class="navbar-brand mx-auto" href="#" th:text="${name}"></a>
+        <a class="navbar-brand mx-auto" href="#"></a>
         <button class="navbar-toggler" data-target=".dual-collapse2" data-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -47,52 +51,42 @@
         </ul>
     </div>
 </nav>
+<div class="wrapContainer" style="height: 1240px;">
+    <div class="container">
+        <div class="balloon white">
+            <div class="star-red"></div>
+            <div class="face">
+                <div class="eye"></div>
+                <div class="mouth happy"></div>
+            </div>
+            <div class="triangle"></div>
+            <div class="string"></div>
+        </div>
 
+        <div class="balloon red">
+            <div class="star"></div>
+            <div class="face">
+                <div class="eye"></div>
+                <div class="mouth happy"></div>
+            </div>
+            <div class="triangle"></div>
+            <div class="string"></div>
+        </div>
 
-<div class="ball"></div>
+        <div class="balloon blue">
+            <div class="star"></div>
+            <div class="face">
+                <div class="eye"></div>
+                <div class="mouth happy"></div>
+            </div>
+            <div class="triangle"></div>
+            <div class="string"></div>
+        </div>
+        <div id="timer"></div>
+        <h1>Déconfinement en France</h1>
+    </div>
+</div>
+
 
 </body>
-
-<style>
-    body {
-        background-color: #00AC32;
-    }
-
-    .ball {
-        position: absolute;
-        overflow: hidden;
-        height: 15em;
-        width: 15em;
-        top: 50%;
-        left: 50%;
-        border-radius: 50%;
-        border: 20px solid #FFF;
-        background-color: #D2E503;
-        box-sizing: border-box;
-        transform: translate(-50%, -50%) rotate(30deg);
-
-    }
-
-    .ball:before, .ball:after {
-        content: '';
-        position: absolute;
-        display: block;
-        height: 100%;
-        width: 100%;
-        border: solid 1em #fff;
-        border-radius: 50%;
-        box-sizing: border-box;
-
-    }
-
-    .ball:before {
-        right: 70%;
-    }
-
-    .ball:after {
-        left: 70%;
-    }
-
-</style>
-
 </html>

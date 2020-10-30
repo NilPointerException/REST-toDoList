@@ -53,6 +53,11 @@ public class WebController {
         return "contactme"; //view
     }
 
+    @GetMapping("/countdown")
+    public String countdown(){
+        return "countdown"; //view
+    }
+
     @PostMapping(value = "/contact", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void sendMail(
             @RequestBody String name, String email, String message) {
